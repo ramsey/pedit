@@ -27,13 +27,13 @@ $loaded_file = null;
 $text_changed = false;
 require_once 'pedit_functions.php';
 
-$w = &new GtkWindow;
+$w =& new GtkWindow();
 $w->set_title('Untitled');
 $w->set_usize(800, 600);
-$w->connect_object('destroy', array('Gtk','main_quit'));
+$w->connect_object('destroy', array('Gtk', 'main_quit'));
 $w->connect('delete-event', create_function('', 'return false;'));
 
-$box = &new GtkVBox();
+$box =& new GtkVBox();
 $w->add($box);
 
 require_once 'pedit_menu.php';

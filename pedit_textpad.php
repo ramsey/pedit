@@ -18,15 +18,15 @@
    $Id$
 */
 
-/* Editable text field */
-$text_area = &new GtkHBox();
+$text_area =& new GtkHBox();
 $box->pack_start($text_area);
 
 $default_font = Gdk::font_load('-*-courier-medium-r-normal--*-140-*-*-m-*-iso8859-1');
-$textpad_style = &new GtkStyle();
+$textpad_style =& new GtkStyle();
 $textpad_style->font = $default_font;
 
-$textpad = &new GtkText;
+/* Editable text field */
+$textpad =& new GtkText();
 $textpad->set_editable(true);
 $textpad->set_style($textpad_style);
 $textpad->set_line_wrap(false);
@@ -36,6 +36,6 @@ $text_area->pack_start($textpad);
 
 /* Vertical scrollbar */
 $textpad_vadj = $textpad->vadj;
-$textpad_vscrollbar = &new GtkVScrollbar($textpad_vadj);
+$textpad_vscrollbar =& new GtkVScrollbar($textpad_vadj);
 $text_area->pack_end($textpad_vscrollbar, false);
 ?>
