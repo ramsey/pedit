@@ -1,0 +1,45 @@
+#!/usr/local/bin/php
+<?php
+/*
+   +----------------------------------------------------------------------+
+   | pedit - A PHP-Powered Text Editor                                    |
+   +----------------------------------------------------------------------+
+   | Copyright (c) 2004 Ben Ramsey                                        |
+   +----------------------------------------------------------------------+
+   | This source file is subject to version 3.0 of the PHP license,       |
+   | that is bundled with this package in the file LICENSE, and is        |
+   | available through the world-wide-web at the following url:           |
+   | http://www.php.net/license/3_0.txt.                                  |
+   | If you did not receive a copy of the PHP license and are unable to   |
+   | obtain it through the world-wide-web, please send a note to          |
+   | license@php.net so we can mail you a copy immediately.               |
+   +----------------------------------------------------------------------+
+   | Authors: Ben Ramsey <benramsey@users.sourceforge.net>                |
+   +----------------------------------------------------------------------+
+   $Id$
+*/
+
+if (!extension_loaded('gtk')) {
+    dl('php_gtk.' . PHP_SHLIB_SUFFIX);
+}
+
+$loaded_file = null;
+$text_changed = false;
+require_once 'pedit_functions.php';
+
+$w = &new GtkWindow;
+$w->set_title('Untitled');
+$w->set_usize(800, 600);
+$w->connect_object('destroy', array('Gtk','main_quit'));
+$w->connect('delete-event', create_function('', 'return false;'));
+
+$box = &new GtkVBox();
+$w->add($box);
+
+require_once 'pedit_menu.php';
+require_once 'pedit_textpad.php';
+
+$w->show_all();
+
+Gtk::main();
+?>
