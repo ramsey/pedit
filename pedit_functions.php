@@ -49,7 +49,7 @@ function file_open_dialog()
             $fs->set_filename($directory);
         }
         $ok = $fs->ok_button;
-        $ok->connect('clicked', 'open_file', &$fs);
+        $ok->connect('clicked', 'open_file', $fs);
         $ok->connect_object('clicked', array(&$fs, 'destroy'));
         $cancel = $fs->cancel_button;
         $cancel->connect_object('clicked', array(&$fs, 'destroy'));
@@ -117,7 +117,7 @@ function file_save_dialog()
 {
     $fs =& new GtkFileSelection('Save File');
     $ok = $fs->ok_button;
-    $ok->connect('clicked', 'file_save_from_dialog', &$fs);
+    $ok->connect('clicked', 'file_save_from_dialog', $fs);
     $ok->connect_object('clicked', array(&$fs, 'destroy'));
     $cancel = $fs->cancel_button;
     $cancel->connect_object('clicked', array(&$fs, 'destroy'));
